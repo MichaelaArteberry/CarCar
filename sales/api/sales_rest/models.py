@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
-    sold = models.BooleanField(default=False)
-    import_href = models.CharField(max_length=200, unique=True)
+    vin = models.CharField(max_length=17, unique=True, null=True, blank=True)
+    # sold = models.BooleanField(default=False)
+    import_href = models.CharField(max_length=200, unique=True, null=True, blank=True)
 
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=200)

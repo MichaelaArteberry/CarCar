@@ -3,44 +3,14 @@ from django.shortcuts import render
 from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 import json
-from inventory_rest.models import Automobile, Manufacturer, VehicleModel
-from sales_rest.models import Customer, Sale, Salesperson
+from sales_rest.models import AutomobileVO, Customer, Sale, Salesperson
 
 
 # Create your views here.
-class ManufacturerEncoder(ModelEncoder):
-    model = Manufacturer
-    properties = [
-        "id",
-        "name",
-    ]
 
-class VehicleModelEncoder(ModelEncoder):
-    model = VehicleModel
-    properties = [
-        "id",
-        "name",
-        "picture_url",
-        "manufacturer",
-    ]
-    encoders = {
-        "manufacturer": ManufacturerEncoder(),
-    }
-
-
-class AutomobileEncoder(ModelEncoder):
-    model = Automobile
-    properties = [
-        "id",
-        "color",
-        "year",
-        "vin",
-        "model",
-        "sold",
-    ]
-    encoders = {
-        "model": VehicleModelEncoder(),
-    }
+class AutomobileEncoderVO(ModelEncoder):
+    model = AutomobileVO
+    properties = ['import_href', 'vin_number']
 
 class SalespersonListEncoder(ModelEncoder):
     model = Salesperson
@@ -83,7 +53,7 @@ class SaleListEncoder(ModelEncoder):
         "customer",
     ]
     encoders = {
-        "automobile": AutomobileEncoder(),
+        "automobile": AutomobileEncoderVO(),
         "salesperson": SalespersonDetailEncoder(),
         "customer": CustomerDetailEncoder(),
     }
@@ -97,10 +67,11 @@ class SaleDetailEncoder(ModelEncoder):
         "customer",
     ]
     encoders = {
-        "automobile": AutomobileEncoder(),
+        "automobile": AutomobileEncoderVO(),
         "salesperson": SalespersonDetailEncoder(),
         "customer": CustomerDetailEncoder(),
     }
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_salesperson(request):
@@ -109,24 +80,19 @@ def api_list_salesperson(request):
         return JsonResponse(
             {"salesperson": salesperson},
             encoder=SalespersonListEncoder,
+            safe=False,
         )
     else:
         content = json.loads(request.body)
         try:
-            salesperson = Salesperson.objects.get(id=content["salesperson"])
-            content["salesperson"]=salesperson
-        except Salesperson.DoesNotExist:
+            salesperson = Salesperson.objects.create(**content)
+            return JsonResponse(salesperson, encoder=SalespersonDetailEncoder, safe=False)
+        except:
             return JsonResponse(
-                {"message": "Invalid salesperson id"},
+                {"message": "Error creating salesperson."},
                 status=400,
-            )
-        salesperson = Salesperson.objects.create(**content)
-        return JsonResponse(
-            salesperson,
-            encoder=SalespersonDetailEncoder,
-            safe=False,
-        )
-
+                safe=False
+                )
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_salesperson(request, pk):
@@ -166,23 +132,19 @@ def api_list_customer(request):
         return JsonResponse(
             {"customer": customer},
             encoder=CustomerListEncoder,
+            safe=False,
         )
     else:
         content = json.loads(request.body)
         try:
-            customer = Customer.objects.get(id=content["customer"])
-            content["customer"]=customer
-        except Customer.DoesNotExist:
+            customer = Customer.objects.create(**content)
+            return JsonResponse(customer, encoder=CustomerDetailEncoder, safe=False)
+        except:
             return JsonResponse(
-                {"message": "Invalid customer id"},
+                {"message": "Error creating customer."},
                 status=400,
-            )
-        customer = Customer.objects.create(**content)
-        return JsonResponse(
-            customer,
-            encoder=CustomerDetailEncoder,
-            safe=False,
-        )
+                safe=False
+                )
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_customer(request, pk):
@@ -221,24 +183,20 @@ def api_list_sale(request):
         sale = Sale.objects.all()
         return JsonResponse(
             {"sale": sale},
-            encoder=CustomerListEncoder,
+            encoder=SaleListEncoder,
+            safe=False,
         )
     else:
         content = json.loads(request.body)
         try:
-            sale = Sale.objects.get(id=content["sale"])
-            content["sale"]=sale
-        except Sale.DoesNotExist:
+            sale = Sale.objects.create(**content)
+            return JsonResponse(sale, encoder=SaleDetailEncoder, safe=False)
+        except:
             return JsonResponse(
-                {"message": "Invalid sale id"},
+                {"message": "Error creating sale."},
                 status=400,
-            )
-        sale = Customer.objects.create(**content)
-        return JsonResponse(
-            sale,
-            encoder=SaleDetailEncoder,
-            safe=False,
-        )
+                safe=False
+                )
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_sale(request, pk):
