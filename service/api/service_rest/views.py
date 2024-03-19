@@ -14,7 +14,7 @@ class AutomobileVOEncoder(ModelEncoder):
 
 class TechnicianModelEncoder(ModelEncoder):
     model = TechnicianModel
-    properties = ['first_name', 'last_name', 'employee_id']
+    properties = ['id', 'first_name', 'last_name', 'employee_id']
 
 class AppointmentListEncoder(ModelEncoder):
     model = AppointmentModel
@@ -58,6 +58,34 @@ def api_list_technicians(request):
             return JsonResponse(technician, encoder=TechnicianModelEncoder, safe=False)
         except Exception as e:
             return JsonResponse({"message": "Error creating technician."}, status=400, safe=False)
+
+
+
+@require_http_methods(["GET", "PUT", "DELETE"])
+def api_detail_technicians(request, pk):
+    if request.method == "GET":
+        appointment = TechnicianModel.objects.get(id=pk)
+        return JsonResponse(appointment, encoder=TechnicianModelEncoder, safe=False)
+
+    # Update technician
+    elif request.method == "PUT":
+        content = json.loads(request.body)
+        try:
+            if "technician" in content:
+                technician = TechnicianModel.objects.get(id=content["technician"])
+                content["technician"] = technician
+        except TechnicianModel.DoesNotExist:
+            return JsonResponse({"message": "Technician does not exist"})
+        TechnicianModel.objects.filter(id=pk).update(**content)
+
+
+    # Delete technician
+        technician = TechnicianModel.objects.get(id=pk)
+        return JsonResponse(appointment, encoder=AppointmentDetailEncoder, safe=False)
+    else:
+        count, _ = TechnicianModel.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+
 
 
 @require_http_methods(["GET", "POST"])
