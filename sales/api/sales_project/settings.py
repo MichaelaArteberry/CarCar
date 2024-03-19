@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sales_rest.apps.SalesRestConfig',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +47,7 @@ MIDDLEWARE = [
 
 ALLOWED_HOSTS = [
     "localhost",
+    "sales-api",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
