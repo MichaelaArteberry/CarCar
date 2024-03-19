@@ -26,7 +26,6 @@ class AppointmentListEncoder(ModelEncoder):
         "technician",
         "reason",
         "date",
-        "time",
         "status",
     ]
     encoders = {"technician": TechnicianModelEncoder()}
@@ -65,13 +64,10 @@ def api_list_technicians(request):
 def api_list_appointments(request):
     if request.method == "GET":
         appointments = AppointmentModel.objects.all()
+        return JsonResponse({"appointments": appointments}, encoder=AppointmentListEncoder)
 
-        return JsonResponse(
-            {"appointments": appointments}, encoder=AppointmentListEncoder
-        )
     else:
         content = json.loads(request.body)
-
         technician = TechnicianModel.objects.get(employee_id=content["technician"])
         content["technician"] = technician
 
@@ -82,7 +78,6 @@ def api_list_appointments(request):
             content["vip"] = False
 
         appointment = AppointmentModel.objects.create(**content)
-
         return JsonResponse(appointment, encoder=AppointmentDetailEncoder, safe=False)
 
 
@@ -107,3 +102,19 @@ def api_detail_appointment(request, pk):
     else:
         count, _ = AppointmentModel.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["PUT"])
+def api_status_cancel(request, pk):
+    appointment = AppointmentModel.objects.get(pk=pk)
+    appointment.status = AppointmentModel.Status.CANCELED
+    appointment.save()
+    return JsonResponse({"message": "Appointment canceled successfully"}, status=200)
+
+@require_http_methods(["PUT"])
+def api_status_finish(request, pk):
+    appointment = AppointmentModel.objects.get(pk=pk)
+    appointment.status = AppointmentModel.Status.FINISHED
+    appointment.save()
+
+    return JsonResponse(appointment, encoder=AppointmentDetailEncoder, safe=False)
