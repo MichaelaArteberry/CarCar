@@ -30,19 +30,21 @@ function CreateAppointment() {
 
     const handleSubmit = async event => {
         event.preventDefault();
+        const appointmentInfo = {
+            vin: formData.vin,
+            customer_name: formData.customer_name,
+            date_time: `${formData.date}T${formData.time}:00Z`,
+            technician: formData.technician,
+            reason: formData.reason
+        };
+
         try {
             const response = await fetch("http://localhost:8080/api/appointments/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    vin: formData.vin,
-                    customer_name: formData.customer_name,
-                    date_time: `${formData.date} ${formData.time}`,
-                    reason: formData.reason,
-                    technician: formData.technician
-                })
+                body: JSON.stringify(appointmentInfo)
             });
             if (!response.ok) {
                 throw new Error("Error creating appointment");
