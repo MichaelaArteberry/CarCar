@@ -1,12 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
-
-# Create your models here.
-
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True, null=True, blank=True)
     vin = models.CharField(max_length=17, unique=True, null=True, blank=True)
+    sold = models.BooleanField(default=False)
 
 class TechnicianModel(models.Model):
     first_name = models.CharField(max_length=100)
@@ -19,7 +17,6 @@ class TechnicianModel(models.Model):
     def get_api_url(self):
         return reverse("api_list_technicians", kwargs={"pk": self.id})
 
-
 class AppointmentModel(models.Model):
     class Status(models.TextChoices):
         SCHEDULED = "scheduled", "Scheduled"
@@ -29,11 +26,10 @@ class AppointmentModel(models.Model):
     customer_name = models.CharField(max_length=200, default="Default Customer")
     vip = models.BooleanField(default=False)
     vin = models.CharField(max_length=300, default="Default VIN")
-    date = models.DateField(null=True)
-    time = models.TimeField(null=True)
+    date_time = models.DateTimeField(null=True)
     technician = models.ForeignKey(
         TechnicianModel,
-        related_name='technician',
+        related_name='appointments',
         on_delete=models.CASCADE
         )
 

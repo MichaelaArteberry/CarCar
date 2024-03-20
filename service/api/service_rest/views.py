@@ -5,12 +5,9 @@ import json
 from common.json import ModelEncoder
 from .models import AutomobileVO, TechnicianModel, AppointmentModel
 
-# Create your views here.
-
-
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ['import_href', 'vin_number']
+    properties = ['import_href', 'vin_number', 'sold']
 
 class TechnicianModelEncoder(ModelEncoder):
     model = TechnicianModel
@@ -25,11 +22,10 @@ class AppointmentListEncoder(ModelEncoder):
         "vin",
         "technician",
         "reason",
-        "date",
+        "date_time",
         "status",
     ]
     encoders = {"technician": TechnicianModelEncoder()}
-
 
 class AppointmentDetailEncoder(ModelEncoder):
     model = AppointmentModel
@@ -40,7 +36,7 @@ class AppointmentDetailEncoder(ModelEncoder):
         "vin",
         "technician",
         "reason",
-        "date",
+        "date_time",
         "status",
     ]
     encoders = {"technician": TechnicianModelEncoder()}
@@ -58,7 +54,6 @@ def api_list_technicians(request):
             return JsonResponse(technician, encoder=TechnicianModelEncoder, safe=False)
         except Exception as e:
             return JsonResponse({"message": "Error creating technician."}, status=400, safe=False)
-
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])
@@ -87,7 +82,6 @@ def api_detail_technicians(request, pk):
         return JsonResponse({"deleted": count > 0})
 
 
-
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
@@ -100,10 +94,11 @@ def api_list_appointments(request):
         content["technician"] = technician
 
         try:
-            vin = AutomobileVO.objects.get(vin=content["vin"])
-            content["vip"] = True
+            automobile = AutomobileVO.objects.get(vin=content["vin"])
+            content["vip"] = automobile.sold
         except AutomobileVO.DoesNotExist:
             content["vip"] = False
+        content["status"] = "created"
 
         appointment = AppointmentModel.objects.create(**content)
         return JsonResponse(appointment, encoder=AppointmentDetailEncoder, safe=False)
@@ -121,11 +116,17 @@ def api_detail_appointment(request, pk):
                 technician = TechnicianModel.objects.get(id=content["technician"])
                 content["technician"] = technician
         except TechnicianModel.DoesNotExist:
-            return JsonResponse({"message": "Technician does not exist"})
-        AppointmentModel.objects.filter(id=pk).update(**content)
+            return JsonResponse({"message": "Technician doesn't exist"})
+        appointment = AppointmentModel.objects.get(pk=pk)
+        try:
+            automobile = AutomobileVO.objects.get(vin=appointment.vin)
+            appointment.vip = automobile.sold
+        except AutomobileVO.DoesNotExist:
+            appointment.vip = False
+        appointment.update(**content)
+        appointment.save()
 
         appointment = AppointmentModel.objects.get(id=pk)
-
         return JsonResponse(appointment, encoder=AppointmentDetailEncoder, safe=False)
     else:
         count, _ = AppointmentModel.objects.filter(id=pk).delete()
@@ -134,10 +135,16 @@ def api_detail_appointment(request, pk):
 
 @require_http_methods(["PUT"])
 def api_status_cancel(request, pk):
-    appointment = AppointmentModel.objects.get(pk=pk)
-    appointment.status = AppointmentModel.Status.CANCELED
-    appointment.save()
-    return JsonResponse({"message": "Appointment canceled successfully"}, status=200)
+    try:
+        appointment = AppointmentModel.objects.get(pk=pk)
+        appointment.status = AppointmentModel.Status.CANCELED
+        appointment.save()
+        return JsonResponse(
+            {"message": "Appointment canceled successfully"}, status=200
+        )
+    except AppointmentModel.DoesNotExist:
+        return JsonResponse({"message": "Appointment does not exist"}, status=404)
+
 
 @require_http_methods(["PUT"])
 def api_status_finish(request, pk):

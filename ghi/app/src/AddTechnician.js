@@ -75,17 +75,23 @@ const AddTechnician = () => {
                     <div className="mb-3">
                         <form onSubmit={handleSubmit}>
                             <div className="form-floating mb-3">
-                                <label htmlFor="first_name" className="form-label">First Name:</label>
+                                <div>
+                                    <label htmlFor="first_name" className="form-label">First Name:</label>
+                                </div>
                                 <input required className="form-control" name="first_name" id="first_name" type="text" value={technician.first_name} onChange={handleFirstNameChange} />
                             </div>
 
                             <div className="form-floating mb-3">
-                                <label htmlFor="last_name" className="form-label">Last Name:</label>
+                                <div>
+                                    <label htmlFor="last_name" className="form-label">Last Name:</label>
+                                </div>
                                 <input required className="form-control" name="last_name" id="last_name" type="text" value={technician.last_name} onChange={handleLastNameChange} />
                             </div>
 
                             <div className="form-floating mb-3">
-                                <label htmlFor="employee_id" className="form-label">Employee ID:</label>
+                                <div>
+                                    <label htmlFor="employee_id" className="form-label">Employee ID:</label>
+                                </div>
                                 <input required className="form-control" name="employee_id" id="employee_id" type="text" value={technician.employee_id} onChange={handleEmployeeIdChange} />
                             </div>
 
