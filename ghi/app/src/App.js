@@ -26,6 +26,23 @@ function App(props) {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/technicians" element={<TechList />} />
+          <Route path="/technicians/add" element={<AddTechnician />} />
+          <Route path="/appointments/add" element={<CreateAppointment />} />
+          <Route path="/appointments" element={<ListAppointments />} />
+          <Route path="/service-history" element={<ServiceHistory />} />
+          <Route path="/salespersons" element={<SalespersonList />} />
+          <Route path="/salespersons/add" element={<SalespersonForm />} />
+          <Route path="/customers" element={<CustomerList />} />
+          <Route path="/customers/add" element={<CustomerForm />} />
+          <Route path="/sales" element={<SaleList />} />
+          <Route path="/sales/add" element={<SaleForm />} />
+          <Route path="/manufacturers" element={<ManufacturerList />} />
+          <Route path="/manufacturers/add" element={<ManufacturerForm />} />
+          <Route path="/models" element={<ModelList />} />
+          <Route path="/models/add" element={<ModelForm />} />
+          <Route path="/automobiles" element={<AutomobileList />} />
+          <Route path="/automobiles/add" element={<AutomobileForm />} />
         </Routes>
       </div>
     </BrowserRouter>
