@@ -10,11 +10,12 @@ from sales_rest.models import AutomobileVO, Customer, Sale, Salesperson
 
 class AutomobileEncoderVO(ModelEncoder):
     model = AutomobileVO
-    properties = ['import_href', 'vin_number']
+    properties = ['import_href', 'vin']
 
 class SalespersonListEncoder(ModelEncoder):
     model = Salesperson
     properties = [
+        "id",
         "first_name",
         "last_name",
         "employee_id",
@@ -31,9 +32,11 @@ class SalespersonDetailEncoder(ModelEncoder):
 class CustomerListEncoder(ModelEncoder):
     model = Customer
     properties = [
+        "id",
         "first_name",
         "last_name",
         "phone_number",
+        "address",
     ]
 
 class CustomerDetailEncoder(ModelEncoder):
@@ -42,11 +45,13 @@ class CustomerDetailEncoder(ModelEncoder):
         "first_name",
         "last_name",
         "phone_number",
+        "address",
     ]
 
 class SaleListEncoder(ModelEncoder):
     model = Sale
     properties = [
+        "id",
         "price",
         "automobile",
         "salesperson",
