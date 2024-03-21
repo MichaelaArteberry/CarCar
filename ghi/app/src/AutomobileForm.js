@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function AutomobileForm() {
   const [models, setModel] = useState([])
+  const [autos, setAuto] = useState([])
 
   //Notice that we can condense all formData
   //into one state object
@@ -71,7 +72,6 @@ function AutomobileForm() {
       [inputName]: value
     });
   }
-
   return (
     <div className="row">
       <div className="offset-3 col-6">

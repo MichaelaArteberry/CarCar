@@ -14,17 +14,17 @@ function SaleForm() {
     customer: '',
   })
 
-  const fetchData = async () => {
+  const fetchAutomobile = async () => {
     const url = 'http://localhost:8100/api/automobiles/';
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setAutomobile(data.autos);
+      setAutomobile(data.automobile.filter(!automobile.sold));
     }
   }
 
   useEffect(() => {
-    fetchData();
+    fetchAutomobile();
   }, []);
 
   const fetchSalesperson = async () => {
