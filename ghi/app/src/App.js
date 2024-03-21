@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
-import SalespersonForm from './SalespersonForm';
 import Nav from './Nav';
 import TechList from './ListTechnicians';
 import AddTechnician from './AddTechnician';
@@ -8,6 +7,7 @@ import CreateAppointment from './AddAppointment';
 import ListAppointments from './ListAppiontments';
 import ServiceHistory from './ServiceHistory';
 import SalespersonList from './SalespersonList';
+import SalespersonForm from './SalespersonForm';
 import CustomerList from './CustomerList';
 import CustomerForm from './CustomerForm';
 import SaleList from './SaleList';
