@@ -10,16 +10,15 @@ const TechList = () => {
             try {
                 const response = await fetch("http://localhost:8080/api/technicians/");
                 if (!response.ok) throw new Error("Failed to fetch technicians");
-
                 const data = await response.json();
                 setTechnicians(data.technicians);
-
             } catch (error) {
                 console.error(error.message);
             }
         };
         fetchTechnicians();
     }, []);
+
 
         const onDelete = (id) => {
         return async () => {
@@ -28,6 +27,7 @@ const TechList = () => {
             window.location.reload()
         }
         };
+
 
     return (
         <div>

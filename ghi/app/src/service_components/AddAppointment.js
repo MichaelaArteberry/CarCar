@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+
 function CreateAppointment() {
     const initialState = {
         vin: "",
@@ -9,6 +10,7 @@ function CreateAppointment() {
         technician: "",
         reason: ""
     };
+
 
     const [formData, setFormData] = useState(initialState);
     const [technicians, setTechnicians] = useState([]);

@@ -14,7 +14,6 @@ function ServiceHistory() {
                 setFilteredAppointments(data.appointments);
             }
         };
-
         fetchAppointments();
     }, []);
 
@@ -34,30 +33,16 @@ function ServiceHistory() {
         return dateTimeA - dateTimeB;
     });
 
+
     return (
         <div className="container mt-4">
             <h2>Service History</h2>
             <form onSubmit={handleSearch}>
                 <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search by VIN"
-                        value={searchVin}
-                        onChange={e => setSearchVin(e.target.value)}
-                    />
+                    <input type="text" className="form-control" placeholder="Search by VIN" value={searchVin} onChange={e => setSearchVin(e.target.value)}/>
                     <div className="input-group-append">
                         <button className="btn btn-primary" type="submit">Search</button>
-                        <button
-                            className="btn btn-secondary"
-                            type="button"
-                            onClick={() => {
-                                setSearchVin("");
-                                setFilteredAppointments(appointments);
-                            }}
-                        >
-                            Clear
-                        </button>
+                        <button className="btn btn-secondary" type="button" onClick={() => {setSearchVin(""); setFilteredAppointments(appointments);}}>Clear</button>
                     </div>
                 </div>
             </form>

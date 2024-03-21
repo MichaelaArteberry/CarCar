@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const ListAppointments = () => {
     const [appointments, setAppointments] = useState([]);
 
+
     const handleCancel = async id => {
         try {
             const response = await fetch(
@@ -52,10 +53,8 @@ const ListAppointments = () => {
             try {
                 const response = await fetch("http://localhost:8080/api/appointments/");
                 if (!response.ok) throw new Error("Failed to fetch list of appointments");
-
                 const data = await response.json();
                 setAppointments(data.appointments);
-
             } catch (error) {
                 console.error(error.message);
             }
@@ -111,5 +110,6 @@ const ListAppointments = () => {
         </div>
     );
 };
+
 
 export default ListAppointments;

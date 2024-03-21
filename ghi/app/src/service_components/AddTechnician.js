@@ -25,14 +25,12 @@ const AddTechnician = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const data = {};
 
         data.first_name = firstName;
         data.last_name = lastName;
         data.employee_id = employeeId;
 
-        console.log(data);
         const technicianUrl = 'http://localhost:8080/api/technicians/';
         const fetchConfig = {
             method: "post",
@@ -41,6 +39,7 @@ const AddTechnician = () => {
                 'Content-Type': 'application/json',
             },
         };
+
 
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
@@ -53,16 +52,16 @@ const AddTechnician = () => {
         }
     }
 
+
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/technicians/';
-
         const response = await fetch(url);
-
         if (response.ok) {
             const data = await response.json();
             setTechnician(data.technicians);
         }
     }
+
 
     useEffect(() => {
         fetchData();
@@ -80,21 +79,18 @@ const AddTechnician = () => {
                                 </div>
                                 <input required className="form-control" name="first_name" id="first_name" type="text" value={technician.first_name} onChange={handleFirstNameChange} />
                             </div>
-
                             <div className="form-floating mb-3">
                                 <div>
                                     <label htmlFor="last_name" className="form-label">Last Name:</label>
                                 </div>
                                 <input required className="form-control" name="last_name" id="last_name" type="text" value={technician.last_name} onChange={handleLastNameChange} />
                             </div>
-
                             <div className="form-floating mb-3">
                                 <div>
                                     <label htmlFor="employee_id" className="form-label">Employee ID:</label>
                                 </div>
                                 <input required className="form-control" name="employee_id" id="employee_id" type="text" value={technician.employee_id} onChange={handleEmployeeIdChange} />
                             </div>
-
                             <button className="btn btn-primary" type="submit">Add Technician</button>
                         </form>
                     </div>
@@ -103,5 +99,6 @@ const AddTechnician = () => {
         </div>
     );
 };
+
 
 export default AddTechnician;
