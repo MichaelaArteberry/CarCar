@@ -26,23 +26,23 @@ function App(props) {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/technicians" element={<TechList />} />
-          <Route path="/technicians/add" element={<AddTechnician />} />
-          <Route path="/appointments/add" element={<CreateAppointment />} />
-          <Route path="/appointments" element={<ListAppointments />} />
-          <Route path="/service-history" element={<ServiceHistory />} />
-          <Route path="/salespersons" element={<SalespersonList />} />
-          <Route path="/salespersons/add" element={<SalespersonForm />} />
+          <Route path="/api/technicians" element={<TechList />} />
+          <Route path="/api/technicians/new" element={<AddTechnician />} />
+          <Route path="/api/appointments/new" element={<CreateAppointment />} />
+          <Route path="/api/appointments" element={<ListAppointments />} />
+          <Route path="/api/serviceHistory" element={<ServiceHistory />} />
+          <Route path="/salespeople" element={<SalespersonList />} />
+          <Route path="/salespeople/new" element={<SalespersonForm />} />
           <Route path="/customers" element={<CustomerList />} />
-          <Route path="/customers/add" element={<CustomerForm />} />
+          <Route path="/customers/new" element={<CustomerForm />} />
           <Route path="/sales" element={<SaleList />} />
-          <Route path="/sales/add" element={<SaleForm />} />
+          <Route path="/sales/new" element={<SaleForm />} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
-          <Route path="/manufacturers/add" element={<ManufacturerForm />} />
+          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
           <Route path="/models" element={<ModelList />} />
-          <Route path="/models/add" element={<ModelForm />} />
+          <Route path="/models/new" element={<ModelForm />} />
           <Route path="/automobiles" element={<AutomobileList />} />
-          <Route path="/automobiles/add" element={<AutomobileForm />} />
+          <Route path="/automobiles/new" element={<AutomobileForm />} />
         </Routes>
       </div>
     </BrowserRouter>
