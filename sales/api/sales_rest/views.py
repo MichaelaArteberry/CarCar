@@ -1,81 +1,15 @@
 from django.http import JsonResponse
-from django.shortcuts import render
-from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 import json
-from sales_rest.models import AutomobileVO, Customer, Sale, Salesperson
-
-
-# Create your views here.
-
-class AutomobileEncoderVO(ModelEncoder):
-    model = AutomobileVO
-    properties = ['import_href', 'vin']
-
-class SalespersonListEncoder(ModelEncoder):
-    model = Salesperson
-    properties = [
-        "id",
-        "first_name",
-        "last_name",
-        "employee_id",
-    ]
-
-class SalespersonDetailEncoder(ModelEncoder):
-    model = Salesperson
-    properties = [
-        "first_name",
-        "last_name",
-        "employee_id",
-    ]
-
-class CustomerListEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "id",
-        "first_name",
-        "last_name",
-        "phone_number",
-        "address",
-    ]
-
-class CustomerDetailEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "first_name",
-        "last_name",
-        "phone_number",
-        "address",
-    ]
-
-class SaleListEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "id",
-        "price",
-        "automobile",
-        "salesperson",
-        "customer",
-    ]
-    encoders = {
-        "automobile": AutomobileEncoderVO(),
-        "salesperson": SalespersonDetailEncoder(),
-        "customer": CustomerDetailEncoder(),
-    }
-
-class SaleDetailEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "price",
-        "automobile",
-        "salesperson",
-        "customer",
-    ]
-    encoders = {
-        "automobile": AutomobileEncoderVO(),
-        "salesperson": SalespersonDetailEncoder(),
-        "customer": CustomerDetailEncoder(),
-    }
+from .encoders import (
+    CustomerDetailEncoder,
+    CustomerListEncoder,
+    SaleDetailEncoder,
+    SaleListEncoder,
+    SalespersonDetailEncoder,
+    SalespersonListEncoder
+)
+from .models import Customer, Sale, Salesperson
 
 
 @require_http_methods(["GET", "POST"])
@@ -91,13 +25,14 @@ def api_list_salesperson(request):
         content = json.loads(request.body)
         try:
             salesperson = Salesperson.objects.create(**content)
-            return JsonResponse(salesperson, encoder=SalespersonDetailEncoder, safe=False)
+            return JsonResponse(
+                salesperson, encoder=SalespersonDetailEncoder, safe=False
+            )
         except:
             return JsonResponse(
-                {"message": "Error creating salesperson."},
-                status=400,
-                safe=False
-                )
+                {"message": "Error creating salesperson."}, status=400, safe=False
+            )
+
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_salesperson(request, pk):
@@ -130,6 +65,7 @@ def api_show_salesperson(request, pk):
             safe=False,
         )
 
+
 @require_http_methods(["GET", "POST"])
 def api_list_customer(request):
     if request.method == "GET":
@@ -146,10 +82,9 @@ def api_list_customer(request):
             return JsonResponse(customer, encoder=CustomerDetailEncoder, safe=False)
         except:
             return JsonResponse(
-                {"message": "Error creating customer."},
-                status=400,
-                safe=False
-                )
+                {"message": "Error creating customer."}, status=400, safe=False
+            )
+
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_customer(request, pk):
@@ -182,6 +117,7 @@ def api_show_customer(request, pk):
             safe=False,
         )
 
+
 @require_http_methods(["GET", "POST"])
 def api_list_sale(request):
     if request.method == "GET":
@@ -198,10 +134,9 @@ def api_list_sale(request):
             return JsonResponse(sale, encoder=SaleDetailEncoder, safe=False)
         except:
             return JsonResponse(
-                {"message": "Error creating sale."},
-                status=400,
-                safe=False
-                )
+                {"message": "Error creating sale."}, status=400, safe=False
+            )
+
 
 @require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_sale(request, pk):
