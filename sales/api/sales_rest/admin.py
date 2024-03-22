@@ -1,10 +1,11 @@
 from django.contrib import admin
 from .models import AutomobileVO, Customer, Sale, Salesperson
 
-# Register your models here.
+
 @admin.register(AutomobileVO)
 class AutomobileVOAdmin(admin.ModelAdmin):
     pass
+
 
 @admin.register(Salesperson)
 class SalespersonAdmin(admin.ModelAdmin):
@@ -15,6 +16,7 @@ class SalespersonAdmin(admin.ModelAdmin):
         "employee_id",
     )
 
+
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
@@ -23,6 +25,7 @@ class CustomerAdmin(admin.ModelAdmin):
         "last_name",
         "phone_number",
     )
+
 
 @admin.register(Sale)
 class SalespersonAdmin(admin.ModelAdmin):

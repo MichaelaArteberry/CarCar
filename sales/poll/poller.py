@@ -10,9 +10,8 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sales_project.settings")
 django.setup()
 
-# Import models from sales_rest, here.
 from sales_rest.models import AutomobileVO
-# from sales_rest.models import Something
+
 
 def get_inventory():
     response = requests.get("http://inventory-api:8000/api/automobiles/")
@@ -23,9 +22,10 @@ def get_inventory():
             defaults={"vin": automobile["vin"]},
         )
 
+
 def poll():
     while True:
-        print('Sales poller polling for data')
+        print("Sales poller polling for data")
         try:
             get_inventory()
             pass

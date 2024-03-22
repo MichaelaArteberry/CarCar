@@ -1,74 +1,120 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">CarCar</NavLink>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <NavLink className="navbar-brand" to="/">
+          CarCar
+        </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/technicians">Technicians</NavLink>
+              <NavLink className="nav-link" to="/api/technicians">
+                Technicians
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/technicians/new">Add Technician</NavLink>
+              <NavLink className="nav-link" to="/api/technicians/new">
+                Add Technician
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/appointments/new">Create a new Appointment</NavLink>
+              <NavLink className="nav-link" to="/api/appointments/new">
+                Create a new Appointment
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/appointments">Appointments</NavLink>
+              <NavLink className="nav-link" to="/api/appointments">
+                Appointments
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/serviceHistory">Service History</NavLink>
-            </li>
-          <li className="nav-item">
-              <NavLink className="nav-link" to="/automobiles">Automobiles</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/automobiles/new">Create an Automobile!</NavLink>
+              <NavLink className="nav-link" to="/api/serviceHistory">
+                Service History
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
+              <NavLink className="nav-link" to="/automobiles">
+                Automobiles
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/manufacturers/new">Create a Manufacturer!</NavLink>
+              <NavLink className="nav-link" to="/automobiles/new">
+                Create an Automobile!
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/models">Models</NavLink>
+              <NavLink className="nav-link" to="/manufacturers">
+                Manufacturers
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/models/new">Create a Model!</NavLink>
+              <NavLink className="nav-link" to="/manufacturers/new">
+                Create a Manufacturer!
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople">Salespeople</NavLink>
+              <NavLink className="nav-link" to="/models">
+                Models
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople/new">Create a Salesperson!</NavLink>
+              <NavLink className="nav-link" to="/models/new">
+                Create a Model!
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/customers">Customers</NavLink>
+              <NavLink className="nav-link" to="/salespeople">
+                Salespeople
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/customers/new">Create a Customer!</NavLink>
+              <NavLink className="nav-link" to="/salespeople/new">
+                Create a Salesperson!
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales">Sales</NavLink>
+              <NavLink className="nav-link" to="/customers">
+                Customers
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/new">Create a Sale!</NavLink>
+              <NavLink className="nav-link" to="/customers/new">
+                Create a Customer!
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/api/SalesHistory">Sale History</NavLink>
+              <NavLink className="nav-link" to="/sales">
+                Sales
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/sales/new">
+                Create a Sale!
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/api/SalesHistory">
+                Sale History
+              </NavLink>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Nav;
