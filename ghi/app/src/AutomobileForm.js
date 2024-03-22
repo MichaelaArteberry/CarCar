@@ -27,8 +27,8 @@ function AutomobileForm() {
     setVIN(value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
     const data = {};
 
@@ -141,5 +141,6 @@ function AutomobileForm() {
     </div>
   );
 }
+
 
 export default AutomobileForm;
