@@ -7,7 +7,7 @@ function ModelForm() {
   //into one state object
   const [formData, setFormData] = useState({
     name: '',
-    manufacturer: '',
+    manufacturer_id: '',
     picture_url: '',
   })
 
@@ -46,7 +46,7 @@ function ModelForm() {
       //also allows for easier clearing of data
       setFormData({
         name: '',
-        manufacturer: '',
+        manufacturer_id: '',
         picture_url: '',
       });
     }
@@ -88,11 +88,11 @@ function ModelForm() {
               <label htmlFor="picture_url">Picture</label>
             </div>
             <div className="mb-3">
-              <select value={formData.manufacturer} onChange={handleFormChange} required name="manufacturer" id="manufacturer" className="form-select">
+              <select value={formData.manufacturer_id} onChange={handleFormChange} required name="manufacturer_id" id="manufacturer_id" className="form-select">
                 <option value="">Choose a manufacturer</option>
                 {manufacturer?.map(manufacturer => {
                   return (
-                    <option key={manufacturer.name} value={manufacturer.name}>{manufacturer.name}</option>
+                    <option key={manufacturer.id} value={manufacturer.id}>{manufacturer.name}</option>
                   );
                 })}
               </select>

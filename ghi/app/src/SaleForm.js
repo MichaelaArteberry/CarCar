@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function SaleForm() {
+  const [filteredAutomobile, setFilteredAutomobile] = useState([]);
   const [automobile, setAutomobile] = useState([])
   const [salesperson, setSalesperson] = useState([])
   const [customer, setCustomer] = useState([])
@@ -19,13 +20,23 @@ function SaleForm() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setAutomobile(data.automobile.filter(!automobile.sold));
+      setAutomobile(data.automobile);
     }
   }
 
   useEffect(() => {
     fetchAutomobile();
   }, []);
+
+  const fetchAuto = event => {
+    const filtered = automobile.filter(automobile =>
+        automobile.sold === false);
+    setFilteredAutomobile(filtered);
+};
+
+useEffect(() => {
+  fetchAuto();
+}, []);
 
   const fetchSalesperson = async () => {
     const url = 'http://localhost:8090/api/salespeople/';

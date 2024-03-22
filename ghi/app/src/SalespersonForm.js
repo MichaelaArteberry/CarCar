@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function SalespersonForm() {
-  const [locations, setLocations] = useState([])
+  const [, setAutomobiles] = useState([])
 
   //Notice that we can condense all formData
   //into one state object
@@ -16,7 +16,7 @@ function SalespersonForm() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setLocations(data.locations);
+      setAutomobiles(data.automobiles);
     }
   }
 
