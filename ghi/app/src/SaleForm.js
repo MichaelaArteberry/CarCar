@@ -18,7 +18,7 @@ function SaleForm() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setAutomobile(data.automobile);
+      setAutomobile(data.autos);
     }
   };
 
@@ -26,11 +26,11 @@ function SaleForm() {
     fetchAutomobile();
   }, []);
 
-  const fetchAuto = (event) => {
-    const filtered = automobile.filter(
-      (automobile) => automobile.sold === false
+  const fetchAuto = () => {
+    const filteredAutomobile = automobile.filter(
+      (autos) => autos.sold === false
     );
-    setFilteredAutomobile(filtered);
+    setFilteredAutomobile(filteredAutomobile);
   };
 
   useEffect(() => {
@@ -116,10 +116,10 @@ function SaleForm() {
                 className="form-select"
               >
                 <option value="">Automobile VIN</option>
-                {automobile?.map((automobile) => {
+                {automobile?.map((autos) => {
                   return (
-                    <option key={automobile.vin} value={automobile.vin}>
-                      {automobile.vin}
+                    <option key={autos.vin} value={autos.vin}>
+                      {autos.vin}
                     </option>
                   );
                 })}
@@ -138,8 +138,8 @@ function SaleForm() {
                 {salesperson?.map((salesperson) => {
                   return (
                     <option
-                      key={salesperson.first_name}
-                      value={salesperson.first_name}
+                      key={salesperson.id}
+                      value={salesperson.employee_id}
                     >
                       {salesperson.first_name} {salesperson.last_name}
                     </option>
@@ -161,7 +161,7 @@ function SaleForm() {
                   return (
                     <option
                       key={customer.first_name}
-                      value={customer.first_name}
+                      value={customer.id}
                     >
                       {customer.first_name} {customer.last_name}
                     </option>
