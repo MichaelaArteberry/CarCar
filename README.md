@@ -42,14 +42,11 @@ We created Value Objects for each model in the inventory microservice, which the
 
 ## Below to set up:
 1. In your terminal, copy and paste the commands:
-```docker volume create beta-data
-docker-compose build
-docker-compose up```
 
 ## Steps to run Application
 
 1. fork then clone the gitlab to your terminal
-2. run "docker compose up --build" to build and start docker
+2. run "docker volume create beta-data" then run "docker-compose build" and last run "docker-compose up"
 3. run "code ." to see the code on VSCode
 
 ## URLs
