@@ -9,7 +9,7 @@ from .encoders import (
     SalespersonDetailEncoder,
     SalespersonListEncoder
 )
-from .models import Customer, Sale, Salesperson
+from .models import AutomobileVO, Customer, Sale, Salesperson
 
 
 @require_http_methods(["GET", "POST"])
@@ -130,12 +130,38 @@ def api_list_sale(request):
     else:
         content = json.loads(request.body)
         try:
+            automobile = AutomobileVO.objects.get(vin=content["automobile"])
+            content["automobile"] = automobile
+
+            salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
+            content["salesperson"] = salesperson
+
+            customer = Customer.objects.get(id=content["customer"])
+            content["customer"] = customer
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid automobile id"},
+                status=400,
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid salesperson id"},
+                status=400,
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid customer id"},
+                status=400,
+            )
+
+        try:
             sale = Sale.objects.create(**content)
             return JsonResponse(sale, encoder=SaleDetailEncoder, safe=False)
         except:
             return JsonResponse(
                 {"message": "Error creating sale."}, status=400, safe=False
             )
+
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])

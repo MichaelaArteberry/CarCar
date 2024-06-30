@@ -45,3 +45,23 @@ We created Value Objects for each model in the inventory microservice, which the
 ```docker volume create beta-data
 docker-compose build
 docker-compose up```
+
+## Steps to run Application
+
+1. fork then clone the gitlab to your terminal
+2. run "docker compose up --build" to build and start docker
+3. run "code ." to see the code on VSCode
+
+## URLs
+
+In the "ghi" app, in "src", there will be a Nav.js file with the subfolder/subdirectories of each url(http://localhost:3000/). Each NavLink will be paired with a component created to its subfolder.
+
+Locally on insomnia, user can follow this chart(![alt text](image-1.png)) to understand what each CRUD Route is used for. In insomnia, the data that is stored should be used as a guideline to create new data, if user wants to add more items.
+
+## Bounded Contexts
+
+In the microservice for Automobile Sales, this bounded context consolidates all functions related to sales(sales app and the components in ghi/src that involves sales, salesperson, and customer.) Sales and Service can each be modified without effecting the other.
+
+## Value Objects
+
+In sales, the automobile model was used as a value object from inventory to assist in data that was used for the models in sales_rest.

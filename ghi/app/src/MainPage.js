@@ -7,6 +7,9 @@ function MainPage() {
           The premiere solution for automobile dealership management!
         </p>
       </div>
+      <div>
+        <img src="https://tse3.mm.bing.net/th?id=OIP.0-d5-Km1uY4R-0G3KFODiQHaE7&pid=Api&P=0&h=220" />
+      </div>
     </div>
   );
 }
