@@ -39,3 +39,9 @@ Within the confined realm of Service Appointment Management, the Technician and 
 ### Sales Microservice
 
 We created Value Objects for each model in the inventory microservice, which then assist us in our sales and service api(back-end). These models are used to create and display the information on our web browser(front-end).
+
+## Below to set up:
+1. In your terminal, copy and paste the commands:
+```docker volume create beta-data
+docker-compose build
+docker-compose up```
