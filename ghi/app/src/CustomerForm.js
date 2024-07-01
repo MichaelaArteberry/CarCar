@@ -61,71 +61,81 @@ function CustomerForm() {
   };
 
   return (
-    <div className="row mt-5">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1>Create a customer</h1>
-          <form onSubmit={handleSubmit} id="create-customer-form">
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.first_name}
-                placeholder="First_name"
-                required
-                type="text"
-                name="first_name"
-                id="first_name"
-                className="form-control"
-              />
-              <label htmlFor="first_name">First Name</label>
-            </div>
+    <div className="bg-img">
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="row">
+          <div className="offset-md-3 col-md-6">
+            <div className="card shadow">
+              <div className="card-body">
+              <h3 className="card-title text-center mb-4">Create a Customer</h3>
+              <form onSubmit={handleSubmit} id="create-customer-form">
+                <div className="form-floating mb-3">
+                  <input
+                    onChange={handleFormChange}
+                    value={formData.first_name}
+                    placeholder="First Name"
+                    required
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    className="form-control"
+                  />
+                  <label htmlFor="first_name">First Name</label>
+                </div>
 
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.last_name}
-                placeholder="Last_name"
-                required
-                type="text"
-                name="last_name"
-                id="last_name"
-                className="form-control"
-              />
-              <label htmlFor="last_name">Last Name</label>
-            </div>
+                <div className="form-floating mb-3">
+                  <input
+                    onChange={handleFormChange}
+                    value={formData.last_name}
+                    placeholder="Last Name"
+                    required
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    className="form-control"
+                  />
+                  <label htmlFor="last_name">Last Name</label>
+                </div>
 
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.phone_number}
-                placeholder="Phone_number"
-                required
-                type="text"
-                name="phone_number"
-                id="phone_number"
-                className="form-control"
-              />
-              <label htmlFor="phone_number">Phone Number</label>
-            </div>
+                <div className="form-floating mb-3">
+                  <input
+                    onChange={handleFormChange}
+                    value={formData.phone_number}
+                    placeholder="Phone Number"
+                    required
+                    type="text"
+                    name="phone_number"
+                    id="phone_number"
+                    className="form-control"
+                  />
+                  <label htmlFor="phone_number">Phone Number</label>
+                </div>
 
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.address}
-                placeholder="Address"
-                required
-                type="text"
-                name="address"
-                id="address"
-                className="form-control"
-              />
-              <label htmlFor="address">Address</label>
+                <div className="form-floating mb-3">
+                  <input
+                    onChange={handleFormChange}
+                    value={formData.address}
+                    placeholder="Address"
+                    required
+                    type="text"
+                    name="address"
+                    id="address"
+                    className="form-control"
+                  />
+                  <label htmlFor="address">Address</label>
+                </div>
+
+                <button className="btn btn-outline-primary" type="submit">
+                  Create
+                </button>
+              </form>
             </div>
-            <button className="btn btn-primary">Create</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }
 

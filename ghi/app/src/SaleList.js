@@ -77,39 +77,57 @@ function SaleList() {
   };
 
   return (
-    <table className="table table-striped table-hover mt-5">
-      <thead>
-        <tr className="text-center">
-          <th>Employee ID</th>
-          <th>Salesperson Name</th>
-          <th>Customer</th>
-          <th>VIN</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sale?.map((sale) => {
-          return (
-            <tr className="text-center" key={sale.id}>
-              <td>{sale.salesperson.employee_id}</td>
-              <td>
-                {sale.salesperson.first_name} {sale.salesperson.last_name}
-              </td>
-              <td>
-                {sale.customer.first_name} {sale.customer.last_name}
-              </td>
-              <td>{sale.automobile.vin}</td>
-              <td>{sale.price}</td>
-              <td>
-                <button className="btn btn-outline-danger" onClick={onDelete(sale.id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="bg-img">
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card shadow">
+              <div className="card-body">
+                <h3 className="card-title mb-4 text-center">Sales List</h3>
+                <table className="table table-light table-hover mt-5">
+                  <thead>
+                    <tr className="text-center">
+                      <th>Employee ID</th>
+                      <th>Salesperson Name</th>
+                      <th>Customer</th>
+                      <th>VIN</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sale?.map((sale) => {
+                      return (
+                        <tr className="text-center" key={sale.id}>
+                          <td>{sale.salesperson.employee_id}</td>
+                          <td>
+                            {sale.salesperson.first_name}{" "}
+                            {sale.salesperson.last_name}
+                          </td>
+                          <td>
+                            {sale.customer.first_name} {sale.customer.last_name}
+                          </td>
+                          <td>{sale.automobile.vin}</td>
+                          <td>{sale.price}</td>
+                          <td>
+                            <button
+                              className="btn btn-outline-danger"
+                              onClick={onDelete(sale.id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -59,58 +59,63 @@ function ModelForm() {
   };
 
   return (
-    <div className="row mt-5">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1>Add a model</h1>
-          <form onSubmit={handleSubmit} id="create-model-form">
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.name}
-                placeholder="Name"
-                required
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-              />
-              <label htmlFor="name">Name</label>
+    <div className="bg-img">
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="row">
+          <div className="offset-md-3 col-md-6">
+            <div className="card shadow">
+              <div className="card-body">
+                <h3 className="card-title text-center">Add a model</h3>
+                <form onSubmit={handleSubmit} id="create-model-form">
+                  <div className="mb-3">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                      onChange={handleFormChange}
+                      value={formData.name}
+                      placeholder="Name"
+                      required
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="picture_url">Picture URL:</label>
+                    <input
+                      onChange={handleFormChange}
+                      value={formData.picture_url}
+                      placeholder="Picture URL"
+                      required
+                      type="text"
+                      name="picture_url"
+                      id="picture_url"
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <select
+                      value={formData.manufacturer_id}
+                      onChange={handleFormChange}
+                      required
+                      name="manufacturer_id"
+                      id="manufacturer_id"
+                      className="form-select"
+                    >
+                      <option value="">Choose a manufacturer</option>
+                      {manufacturer.map((manufacturer) => (
+                        <option key={manufacturer.id} value={manufacturer.id}>
+                          {manufacturer.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <button className="btn btn-outline-primary">Create</button>
+                </form>
+              </div>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.picture_url}
-                placeholder="picture_url"
-                required
-                type="text"
-                name="picture_url"
-                id="picture_url"
-                className="form-control"
-              />
-              <label htmlFor="picture_url">Picture</label>
-            </div>
-            <div className="mb-3">
-              <select
-                value={formData.manufacturer_id}
-                onChange={handleFormChange}
-                required
-                name="manufacturer_id"
-                id="manufacturer_id"
-                className="form-select"
-              >
-                <option value="">Choose a manufacturer</option>
-                {manufacturer?.map((manufacturer) => {
-                  return (
-                    <option key={manufacturer.id} value={manufacturer.id}>
-                      {manufacturer.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <button className="btn btn-primary">Create</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

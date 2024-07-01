@@ -31,30 +31,47 @@ function ManufacturerList() {
   };
 
   return (
-    <table className="table table-striped table-hover mt-5">
-      <thead>
-        <tr className="text-center">
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {manufacturer?.map((manufacturer) => {
-          return (
-            <tr className="text-center" key={manufacturer.id}>
-              <td>{manufacturer.name}</td>
-              <td>
-                <button
-                  className="btn btn-outline-danger"
-                  onClick={onDelete(manufacturer.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="bg-img">
+    <div className="bg-overlay"></div>
+    <div className="container py-4 mt-5">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="card shadow">
+            <div className="card-body">
+              <h3 className="card-title mb-4 text-center">
+                Manufacturer List
+              </h3>
+              <table className="table table-light table-hover mt-5">
+                <thead>
+                  <tr className="text-center">
+                    <th>Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {manufacturer?.map((manufacturer) => {
+                    return (
+                      <tr className="text-center" key={manufacturer.id}>
+                        <td>{manufacturer.name}</td>
+                        <td>
+                          <button
+                            className="btn btn-outline-danger"
+                            onClick={onDelete(manufacturer.id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   );
 }
 

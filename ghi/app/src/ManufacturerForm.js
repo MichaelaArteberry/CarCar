@@ -55,26 +55,35 @@ function ManufacturerForm() {
   };
 
   return (
-    <div className="row mt-5">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1 className="text-center">Add a manufacturer</h1>
-          <form onSubmit={handleSubmit} id="create-manufacturer-form">
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.name}
-                placeholder="name"
-                required
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-              />
-              <label htmlFor="name">Name</label>
+    <div className="bg-img">
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="row">
+          <div className="offset-md-3 col-md-6">
+            <div className="card shadow">
+              <div className="card-body">
+                <h1 className="text-center card-title mb-4">
+                  Add a manufacturer
+                </h1>
+                <form onSubmit={handleSubmit} id="create-manufacturer-form">
+                  <div className="form-floating mb-3">
+                    <input
+                      onChange={handleFormChange}
+                      value={formData.name}
+                      placeholder="name"
+                      required
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="form-control"
+                    />
+                    <label htmlFor="name">Name</label>
+                  </div>
+                  <button className="btn btn-outline-primary">Create</button>
+                </form>
+              </div>
             </div>
-            <button className="btn btn-outline-primary">Create</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

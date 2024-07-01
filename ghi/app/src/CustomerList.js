@@ -29,33 +29,43 @@ function CustomerList() {
   };
 
   return (
-    <table className="table table-striped table-hover mt-5">
-      <thead>
-        <tr className="text-center">
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Phone Number</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        {customer?.map((customer) => {
-          return (
-            <tr className="text-center" key={customer.id}>
-              <td>{customer.first_name}</td>
-              <td>{customer.last_name}</td>
-              <td>{customer.phone_number}</td>
-              <td>{customer.address}</td>
-              <td>
-                <button className=" btn btn-outline-danger" onClick={onDelete(customer.id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="bg-img">
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="card-body">
+          <h3 className="card-title mb-4 text-center">Customer List</h3>
+          <table className="table table-light table-hover">
+            <thead>
+              <tr className="text-center">
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customer.map((customer) => (
+                <tr className="text-center" key={customer.id}>
+                  <td>{customer.first_name}</td>
+                  <td>{customer.last_name}</td>
+                  <td>{customer.phone_number}</td>
+                  <td>{customer.address}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={onDelete(customer.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 }
 
