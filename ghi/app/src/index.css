@@ -1,3 +1,14 @@
+.bg-img {
+  background-image: url(./assets/grey-brick-bg.jpg);
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +16,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh; /* Ensure full viewport height */
+  overflow-y: auto; /* Allow scrolling */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9); /* Adjust as needed */
+  /* Other card styles */
+}
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+  z-index: -1;
 }
