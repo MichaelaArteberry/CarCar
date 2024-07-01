@@ -28,9 +28,9 @@ function ModelList() {
     };
   };
   return (
-    <table className="table table-striped">
+    <table className="table table-striped table-hover mt-5">
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>Name</th>
           <th>Manufacturer</th>
           <th>Picture</th>
@@ -39,14 +39,14 @@ function ModelList() {
       <tbody>
         {model?.map((model) => {
           return (
-            <tr key={model.id}>
+            <tr className="text-center" key={model.id}>
               <td>{model.name}</td>
               <td>{model.manufacturer.name}</td>
               <td>
-                <img src={model.picture_url} />
+                <img className="img-thumbnail max-width: 100% height: auto;" src={model.picture_url} />
               </td>
               <td>
-                <button className="btn-danger" onClick={onDelete(model.id)}>
+                <button className="btn btn-outline-danger" onClick={onDelete(model.id)}>
                   Delete
                 </button>
               </td>

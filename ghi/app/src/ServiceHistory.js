@@ -32,8 +32,8 @@ function ServiceHistory() {
   });
 
   return (
-    <div className="container mt-4">
-      <h2>Service History</h2>
+    <div className="container mt-5">
+      <h2 className="text-center p-3">Service History</h2>
       <form onSubmit={handleSearch}>
         <div className="input-group mb-3">
           <input
@@ -43,12 +43,12 @@ function ServiceHistory() {
             value={searchVin}
             onChange={(e) => setSearchVin(e.target.value)}
           />
-          <div className="input-group-append">
-            <button className="btn btn-primary" type="submit">
+          <div className="input-group-append p-2">
+            <button className="btn btn-outline-primary m-2" type="submit">
               Search
             </button>
             <button
-              className="btn btn-secondary"
+              className="btn btn-outline-secondary"
               type="button"
               onClick={() => {
                 setSearchVin("");
@@ -60,9 +60,9 @@ function ServiceHistory() {
           </div>
         </div>
       </form>
-      <table className="table">
+      <table className="table table-striped table-hover ">
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>VIN</th>
             <th>Is VIP?</th>
             <th>Customer</th>
@@ -88,7 +88,7 @@ function ServiceHistory() {
                 hour12: true,
               });
               return (
-                <tr key={appointment.id}>
+                <tr className="text-center" key={appointment.id}>
                   <td>{appointment.vin}</td>
                   <td>{appointment.is_vip ? "Yes" : "No"}</td>
                   <td>{appointment.customer_name}</td>
@@ -104,7 +104,7 @@ function ServiceHistory() {
               );
             })
           ) : (
-            <tr>
+            <tr className="text-center">
               <td>No appointments found</td>
             </tr>
           )}

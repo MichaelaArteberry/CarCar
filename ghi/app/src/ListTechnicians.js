@@ -29,25 +29,25 @@ const TechList = () => {
   };
 
   return (
-    <div>
-      <h2>Technicians</h2>
+    <div className="mt-5">
+      <h2 className="text-center mt-3 p-3">Technicians</h2>
       <table className="table table-striped table-hover">
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>Employee ID</th>
             <th>Name</th>
           </tr>
         </thead>
         <tbody>
           {technicians.map((technician) => (
-            <tr key={technician.id}>
+            <tr className="text-center" key={technician.id}>
               <td>{technician.employee_id}</td>
               <td>
                 {technician.first_name} {technician.last_name}
               </td>
               <td>
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-outline-danger"
                   onClick={onDelete(technician.id)}
                 >
                   Delete

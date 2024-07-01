@@ -77,9 +77,9 @@ function SaleList() {
   };
 
   return (
-    <table className="table table-striped">
+    <table className="table table-striped table-hover mt-5">
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>Employee ID</th>
           <th>Salesperson Name</th>
           <th>Customer</th>
@@ -90,7 +90,7 @@ function SaleList() {
       <tbody>
         {sale?.map((sale) => {
           return (
-            <tr key={sale.id}>
+            <tr className="text-center" key={sale.id}>
               <td>{sale.salesperson.employee_id}</td>
               <td>
                 {sale.salesperson.first_name} {sale.salesperson.last_name}
@@ -101,7 +101,7 @@ function SaleList() {
               <td>{sale.automobile.vin}</td>
               <td>{sale.price}</td>
               <td>
-                <button className="btn-danger" onClick={onDelete(sale.id)}>
+                <button className="btn btn-outline-danger" onClick={onDelete(sale.id)}>
                   Delete
                 </button>
               </td>

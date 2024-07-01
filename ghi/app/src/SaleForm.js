@@ -101,10 +101,10 @@ function SaleForm() {
   };
 
   return (
-    <div className="row">
+    <div className="row mt-5">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create a sale</h1>
+          <h1 className="text-center">Create a sale</h1>
           <form onSubmit={handleSubmit} id="create-sale-form">
             <div className="mb-3">
               <select
@@ -182,7 +182,7 @@ function SaleForm() {
               />
               <label htmlFor="price">Price</label>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button className="btn btn-outline-success">Sold!</button>
           </form>
         </div>
       </div>

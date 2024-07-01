@@ -31,20 +31,20 @@ function ManufacturerList() {
   };
 
   return (
-    <table className="table table-striped">
+    <table className="table table-striped table-hover mt-5">
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>Name</th>
         </tr>
       </thead>
       <tbody>
         {manufacturer?.map((manufacturer) => {
           return (
-            <tr key={manufacturer.id}>
+            <tr className="text-center" key={manufacturer.id}>
               <td>{manufacturer.name}</td>
               <td>
                 <button
-                  className="btn-danger"
+                  className="btn btn-outline-danger"
                   onClick={onDelete(manufacturer.id)}
                 >
                   Delete

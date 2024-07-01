@@ -59,10 +59,10 @@ function SalespersonForm() {
   };
 
   return (
-    <div className="row">
+    <div className="row mt-5">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Add a salesperson</h1>
+          <h1 className="text-center">Add a salesperson</h1>
           <form onSubmit={handleSubmit} id="create-salesperson-form">
             <div className="form-floating mb-3">
               <input
@@ -105,7 +105,7 @@ function SalespersonForm() {
               />
               <label htmlFor="employee_id">Employee ID</label>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button className="btn btn-outline-primary">Create</button>
           </form>
         </div>
       </div>

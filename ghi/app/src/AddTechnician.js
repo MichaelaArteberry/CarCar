@@ -63,7 +63,7 @@ const AddTechnician = () => {
   }, []);
 
   return (
-    <div className="row">
+    <div className="row mt-5">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <div className="mb-3">

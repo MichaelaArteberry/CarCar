@@ -18,12 +18,11 @@ import ModelList from "./ModelList";
 import ModelForm from "./ModelForm";
 import AutomobileList from "./AutomobileList";
 import AutomobileForm from "./AutomobileForm";
-import SalesHistory from "./SalesHistory";
 
 function App() {
   return (
     <BrowserRouter>
-      <Nav />
+      <Nav className="zindex-fixed"/>
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -44,7 +43,6 @@ function App() {
           <Route path="/models/new" element={<ModelForm />} />
           <Route path="/automobiles" element={<AutomobileList />} />
           <Route path="/automobiles/new" element={<AutomobileForm />} />
-          <Route path="/api/SalesHistory" element={<SalesHistory />} />
         </Routes>
       </div>
     </BrowserRouter>

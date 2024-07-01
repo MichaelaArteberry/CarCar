@@ -29,9 +29,9 @@ function AutomobileList() {
   };
 
   return (
-    <table className="table table-striped">
+    <table className="table table-striped table-hover mt-5">
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>VIN</th>
           <th>Color</th>
           <th>Year</th>
@@ -43,7 +43,7 @@ function AutomobileList() {
       <tbody>
         {automobile?.map((automobile) => {
           return (
-            <tr key={automobile.id}>
+            <tr className="text-center" key={automobile.id}>
               <td>{automobile.vin}</td>
               <td>{automobile.color}</td>
               <td>{automobile.year}</td>
@@ -52,7 +52,7 @@ function AutomobileList() {
               <td>{automobile.sold}</td>
               <td>
                 <button
-                  className="btn-danger"
+                  className="btn btn-outline-danger"
                   onClick={onDelete(automobile.id)}
                 >
                   Delete

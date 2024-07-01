@@ -60,9 +60,9 @@ const ListAppointments = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Service Appointments</h2>
-      <table className="table table-striped table-hover">
+    <div className="mt-5 mb-5">
+      <h2 className="mt-5 p-3 text-center border rounded">Service Appointments</h2>
+      <table className="table table-striped table-hover mt-5">
         <thead>
           <tr>
             <th>VIN</th>
@@ -102,7 +102,7 @@ const ListAppointments = () => {
                 <td>
                   {appointment.status !== "finished" && (
                     <button
-                      className="btn btn-danger me-2"
+                      className="btn btn-outline-danger me-2"
                       onClick={() => handleCancel(appointment.id)}
                     >
                       Cancel
@@ -112,7 +112,7 @@ const ListAppointments = () => {
                 <td>
                   {appointment.status !== "finished" && (
                     <button
-                      className="btn btn-success"
+                      className="btn btn-outline-success"
                       onClick={() => handleFinish(appointment.id)}
                     >
                       Finish

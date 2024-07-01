@@ -29,9 +29,9 @@ function CustomerList() {
   };
 
   return (
-    <table className="table table-striped">
+    <table className="table table-striped table-hover mt-5">
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>First Name</th>
           <th>Last Name</th>
           <th>Phone Number</th>
@@ -41,13 +41,13 @@ function CustomerList() {
       <tbody>
         {customer?.map((customer) => {
           return (
-            <tr key={customer.id}>
+            <tr className="text-center" key={customer.id}>
               <td>{customer.first_name}</td>
               <td>{customer.last_name}</td>
               <td>{customer.phone_number}</td>
               <td>{customer.address}</td>
               <td>
-                <button className="btn-danger" onClick={onDelete(customer.id)}>
+                <button className=" btn btn-outline-danger" onClick={onDelete(customer.id)}>
                   Delete
                 </button>
               </td>
