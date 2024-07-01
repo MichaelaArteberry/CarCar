@@ -163,7 +163,7 @@ function CreateAppointment() {
                       ))}
                     </select>
                   </div>
-                  <button className="btn btn-primary" type="submit">
+                  <button className="btn btn-outline-primary" type="submit">
                     Create Appointment
                   </button>
                 </form>

@@ -64,63 +64,61 @@ const AddTechnician = () => {
 
   return (
     <div className="bg-img">
-      <div className="row mt-5">
-        <div className="offset-3 col-6">
-          <div className="shadow p-4 mt-4">
-            <div className="mb-3">
-              <form onSubmit={handleSubmit}>
-                <div className="form-floating mb-3">
-                  <div>
-                    <label htmlFor="first_name" className="form-label bg-white border rounded p-2">
-                      First Name:
+      <div className="bg-overlay"></div>
+      <div className="container py-4 mt-5">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <div className="card shadow">
+              <div className="card-body">
+                <h3 className="card-title mb-4">Add Technician</h3>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="first_name" className="form-label">
+                      First Name
                     </label>
+                    <input
+                      required
+                      className="form-control"
+                      name="first_name"
+                      id="first_name"
+                      type="text"
+                      value={technician.first_name}
+                      onChange={handleFirstNameChange}
+                    />
                   </div>
-                  <input
-                    required
-                    className="form-control"
-                    name="first_name"
-                    id="first_name"
-                    type="text"
-                    value={technician.first_name}
-                    onChange={handleFirstNameChange}
-                  />
-                </div>
-                <div className="form-floating mb-3">
-                  <div>
-                    <label htmlFor="last_name" className="form-label bg-white border rounded p-2">
-                      Last Name:
+                  <div className="mb-3">
+                    <label htmlFor="last_name" className="form-label">
+                      Last Name
                     </label>
+                    <input
+                      required
+                      className="form-control"
+                      name="last_name"
+                      id="last_name"
+                      type="text"
+                      value={technician.last_name}
+                      onChange={handleLastNameChange}
+                    />
                   </div>
-                  <input
-                    required
-                    className="form-control"
-                    name="last_name"
-                    id="last_name"
-                    type="text"
-                    value={technician.last_name}
-                    onChange={handleLastNameChange}
-                  />
-                </div>
-                <div className="form-floating mb-3">
-                  <div>
-                    <label htmlFor="employee_id" className="form-label bg-white border rounded p-2">
-                      Employee ID:
+                  <div className="mb-3">
+                    <label htmlFor="employee_id" className="form-label">
+                      Employee ID
                     </label>
+                    <input
+                      required
+                      className="form-control"
+                      name="employee_id"
+                      id="employee_id"
+                      type="text"
+                      value={technician.employee_id}
+                      onChange={handleEmployeeIdChange}
+                    />
                   </div>
-                  <input
-                    required
-                    className="form-control"
-                    name="employee_id"
-                    id="employee_id"
-                    type="text"
-                    value={technician.employee_id}
-                    onChange={handleEmployeeIdChange}
-                  />
-                </div>
-                <button className="btn btn-primary" type="submit">
-                  Add Technician
-                </button>
-              </form>
+                  <button className="btn btn-primary" type="submit">
+                    Add Technician
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
